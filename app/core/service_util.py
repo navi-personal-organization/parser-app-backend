@@ -18,10 +18,15 @@ def clean_date_time(data):
         day = int(date[1])
         year = int(date[2])
 
+        # quick fix for YYYY-mm-dd format of year
         if len(date[0]) > 2:
             month = int(date[1])
             day = int(date[2])
             year = int(date[0])
+
+        # quick fix for dd-mm-YY format of year
+        if len(date[0]) <= 2 and len(date[2]) <= 2:
+            year = int('20'+date[2])
 
         hour = int(time[0])
         minute = int(time[1])
@@ -47,10 +52,15 @@ def clean_date(data):
         day = int(date_arr[1])
         year = int(date_arr[2])
 
+        # quick fix for YYYY-mm-dd format of year
         if len(date_arr[0]) > 2:
             month = int(date_arr[1])
             day = int(date_arr[2])
             year = int(date_arr[0])
+
+        # quick fix for dd-mm-YY format of year
+        if len(date_arr[0]) <= 2 and len(date_arr[2]) <= 2:
+            year = int('20' + date_arr[2])
 
         return datetime(year=year, month=month, day=day).date()
     except Exception as e:

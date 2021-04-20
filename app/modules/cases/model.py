@@ -1,5 +1,6 @@
 import psycopg2
 import logging
+import time
 from app.credentials import postgresql_credentials as cred
 from app.core import query_builder as query
 
@@ -16,7 +17,7 @@ class CasesModel(object):
                                host=cred.host,
                                port=cred.port)
         cur = con.cursor()
-
+        start_time = time.time()
         try:
             cur.execute(query.create_table())
             cur.executemany(query.insert_rows_query(), rows)
@@ -26,6 +27,7 @@ class CasesModel(object):
         finally:
             cur.close()
             con.close()
+            logging.info(('Elapsed time in saving: %s' % (time.time() - start_time)))
 
     @classmethod
     def get_top_confirmed(cls, obs_date, max_results):

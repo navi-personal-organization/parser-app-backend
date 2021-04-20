@@ -23,7 +23,6 @@ source ./env/Scripts/activate
 pip install -r requirements.txt -t lib
 ```
 5. Right click on the lib folder and mark directory as Sources Root.
-5. Right click on the credentials folder and mark directory as Sources Root.   
 6. Run your backend application
 ```
 ./run_local.sh

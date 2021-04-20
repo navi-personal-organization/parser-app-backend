@@ -1,8 +1,8 @@
-import time
 import logging
 from flask import Flask
 from flask_cors import CORS
 from flask_script import Manager
+from multiprocessing import Process
 from app.modules.cases.api import cases
 from app.modules.cases.service import CasesService as service
 
@@ -17,7 +17,8 @@ manager = Manager(app)
 
 @manager.command
 def runserver():
-    service.parse_csv()
+    p = Process(target=service.parse_csv)
+    p.start()
     app.run()
 
 
