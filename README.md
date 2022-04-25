@@ -27,3 +27,4 @@ pip install -r requirements.txt -t lib
 ```
 ./run_local.sh
 ```
+7. test code
